@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Share</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Simple Share</h1>
+            <nav>
+                <ul>
+                    <li><a href="#intro">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="{{ url_for('upload_page') }}">Upload</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section id="intro">
+        <div class="container">
+            <h2>Welcome to Simple Share</h2>
+            <p>Effortlessly share your files with anyone, anywhere.</p>
+        </div>
+    </section>
+    <section id="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <p>Simple Share is a fast, secure, and easy-to-use file sharing service. Our mission is to simplify the process of sharing files by providing a reliable platform for everyone to use.</p>
+        </div>
+    </section>
+    <section id="features">
+        <div class="container">
+            <h2>Key Features</h2>
+            <div class="feature">
+                <img src="{{ url_for('static/css', filename='images/Upload-File (2).png') }}" alt="Feature 1">
+                <h3>Fast Uploads</h3>
+                <p>Quickly upload your files with our fast and reliable service.</p>
+            </div>
+            <div class="feature">
+                <img src="{{ url_for('static', filename='images/Upload-File (1).png') }}" alt="Feature 2">
+                <h3>Secure Storage</h3>
+                <p>Rest assured that your files are securely stored and protected.</p>
+            </div>
+            <div class="feature">
+                <img src="{{ url_for('static', filename='images/Success.png') }}" alt="Feature 3">
+                <h3>Easy Sharing</h3>
+                <p>Share your files with a simple link, making file sharing effortless.</p>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Simple Share. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

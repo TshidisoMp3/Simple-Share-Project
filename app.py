@@ -29,6 +29,7 @@ def upload_to_s3(file, bucket_name, acl="public-read"):
             bucket_name,
             file.filename,
             ExtraArgs={
+                "ACL": acl,
                 "ContentType": file.content_type
             }
         )
@@ -38,9 +39,12 @@ def upload_to_s3(file, bucket_name, acl="public-read"):
     
     # Define the routes for the application backend
 
-    
 @app.route('/')
 def index():
+    return render_template('index.html')
+
+@app.route('/upload')
+def upload_page():
     return render_template('upload.html')
 
 @app.route('/upload', methods=['POST'])
@@ -60,11 +64,12 @@ def upload():
             new_file = File(filename=file.filename, s3_url=s3_url)
             db.session.add(new_file)
             db.session.commit()
-            return redirect(url_for('index'))
+            return render_template('success.html', s3_url=s3_url)
         else:
             flash('File upload failed')
             return redirect(request.url)
-
+    
+    
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()

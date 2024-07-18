@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload File</title>
+    <title>Success</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>Upload File</h1>
+            <h1>Upload Successful</h1>
             <nav>
                 <ul>
                     <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('upload_page') }}">Upload Another</a></li>
                 </ul>
             </nav>
         </div>
     </header>
-    <section id="upload">
+    <section id="success">
         <div class="container">
-            <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
-                <label for="file">Choose a file to upload</label>
-                <input type="file" name="file" id="file">
-                <button type="submit" class="btn">Upload</button>
-            </form>
+            <h2>Your file has been successfully uploaded!</h2>
+            <a href="{{ file_url }}" class="btn">Download File</a>
+            <p>Or copy the link below to share it with others:</p>
+            <input type="text" value="{{ file_url }}" readonly>
         </div>
     </section>
     <footer>
