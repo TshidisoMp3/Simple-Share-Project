@@ -43,7 +43,7 @@ def upload_to_s3(file, bucket_name, acl="public-read"):
 def index():
     return render_template('index.html')
 
-@app.route('/upload')
+@app.route('/upload_page')
 def upload_page():
     return render_template('upload.html')
 
@@ -64,12 +64,16 @@ def upload():
             new_file = File(filename=file.filename, s3_url=s3_url)
             db.session.add(new_file)
             db.session.commit()
-            return render_template('success.html', s3_url=s3_url)
+            return redirect(url_for('success', file_url=s3_url))
         else:
             flash('File upload failed')
             return redirect(request.url)
-    
-    
+
+@app.route('/success')
+def success():
+    file_url = request.args.get('file_url')
+    return render_template('success.html', file_url=file_url)
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
